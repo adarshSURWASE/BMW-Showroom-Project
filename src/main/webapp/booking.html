@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>BMW Booking</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#141e30,#243b55);
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:0;
+}
+
+.booking-box{
+  width:400px;
+  padding:30px;
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(10px);
+  border-radius:15px;
+  color:white;
+  box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+
+.booking-box h2{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.booking-box input{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  border:none;
+  border-radius:8px;
+  outline:none;
+}
+
+.booking-box button{
+  width:100%;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  background:#007bff;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.booking-box button:hover{
+  background:#0056b3;
+}
+</style>
+</head>
+
+<body>
+
+<div class="booking-box">
+  <h2>Book Your BMW</h2>
+
+  <form action="booking" method="post">
+  <input type="text" name="carName" id="carName" readonly>
+  <input type="text" name="customerName" placeholder="Your Name" required>
+  <input type="tel" name="phone" placeholder="Phone Number" required>
+  <input type="number" name="downPayment" value="500000" required>
+  <button type="submit">Confirm Booking</button>
+</form>
+</div>
+
+<script>
+  // Get car name from URL
+  const params = new URLSearchParams(window.location.search);
+  const car = params.get("car");
+
+  if(car){
+    document.getElementById("carName").value = car;
+  }
+
+  // Default down payment format
+  document.getElementById("downPayment").value = 500000;
+</script>
+
+</body>
+</html>

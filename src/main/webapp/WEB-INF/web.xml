@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+         https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+	<display-name>BMW car</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.xhtml</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>default.xhtml</welcome-file>
+	</welcome-file-list>
+	
+	<servlet>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>com.bmw.controller.RegisterServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/register</url-pattern>
+</servlet-mapping>
+    
+    <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.bmw.controller.LoginServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/login</url-pattern>
+</servlet-mapping>
+
+<servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>com.bmw.controller.LogoutServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
+</servlet-mapping>
+
+<servlet>
+    <servlet-name>CartServlet</servlet-name>
+    <servlet-class>com.bmw.controller.CartServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>CartServlet</servlet-name>
+    <url-pattern>/cart</url-pattern>
+</servlet-mapping>
+
+<servlet>
+    <servlet-name>RemoveBookingServlet</servlet-name>
+    <servlet-class>com.bmw.controller.RemoveBookingServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>RemoveBookingServlet</servlet-name>
+    <url-pattern>/removeBooking</url-pattern>
+</servlet-mapping>
+
+<servlet>
+    <servlet-name>BookingServlet</servlet-name>
+    <servlet-class>com.bmw.controller.BookingServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>BookingServlet</servlet-name>
+    <url-pattern>/booking</url-pattern>
+</servlet-mapping>
+</web-app>

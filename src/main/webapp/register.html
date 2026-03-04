@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css" />
+
+<title>BMW Register</title>
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.register-box {
+  width: 380px;
+  padding: 30px;
+  background: rgba(0,0,0,0.7);
+  border-radius: 15px;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.register-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.register-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+}
+
+.register-box button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.register-box button:hover {
+  background: #0056b3;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="canvas"></canvas>
+
+<div class="register-box">
+  <h2>BMW Showroom Register</h2>
+
+  <form action="register" method="post">
+  <input type="text" name="name" placeholder="Full Name" required>
+  <input type="tel" name="phone" placeholder="Phone Number" required>
+  <input type="email" name="email" placeholder="Email Address" required>
+  <input type="password" name="password" placeholder="Password" required>
+  <button type="submit">Register</button>
+</form>
+  <p style="text-align:center; margin-top:15px;">
+  Already have an account?
+  <a href="login.html" style="color:#4da3ff; text-decoration:none;">
+    Login
+  </a>
+</p>
+</div>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+function Particle(x, y, size, speedX, speedY) {
+  this.x = x;
+  this.y = y;
+  this.size = size;
+  this.speedX = speedX;
+  this.speedY = speedY;
+}
+
+Particle.prototype.update = function() {
+  this.x += this.speedX;
+  this.y += this.speedY;
+  if (this.size > 0.2) this.size -= 0.02;
+};
+
+Particle.prototype.draw = function() {
+  ctx.fillStyle = "rgba(0, 123, 255, 0.8)";
+  ctx.beginPath();
+  ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+  ctx.fill();
+};
+
+function handleParticles() {
+  for (let i = 0; i < particles.length; i++) {
+    particles[i].update();
+    particles[i].draw();
+
+    if (particles[i].size <= 0.3) {
+      particles.splice(i, 1);
+      i--;
+    }
+  }
+}
+
+window.addEventListener("mousemove", function(e) {
+  for (let i = 0; i < 2; i++) {
+    particles.push(new Particle(
+      e.x,
+      e.y,
+      Math.random() * 5 + 2,
+      (Math.random() - 0.5) * 2,
+      (Math.random() - 0.5) * 2
+    ));
+  }
+});
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  handleParticles();
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+window.addEventListener("resize", function() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+</script>
+
+</body>
+</html>
